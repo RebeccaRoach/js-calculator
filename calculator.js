@@ -1,22 +1,13 @@
-// def add_5(num):
-//   return num+5
-//   end
-  
-// my_func = add_5
-
-// answer = my_func(4) 
-// answer = 9
-
-// define constants to substitute/simulate user input
+// define constants to simulate user input
 const exampleAdditionInput = {
-  num1: 3,
-  num2: 97,
+  num1: 1.4,
+  num2: 8.2,
   operation: ['add', '+']
 }
 
 const exampleSubtractionInput = {
-  num1: 55,
-  num2: 15,
+  num1: 27,
+  num2: 4,
   operation: ['subtract', '-']
 }
 
@@ -28,41 +19,57 @@ const exampleMultiplicationInput = {
 
 const exampleDivisionInput = {
   num1: 100,
-  num2: 5,
+  num2: 20,
   operation: ['divide', '/']
 }
 
-// define helper methods for four operations
+// helper methods for four operations
 const add = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => num1 / num2;
 
 
-// validate input
-
-
-let calculate = function(input) {
-
-  if (input['operation'].includes('add') || input['operation'].includes('+')) {
-    result = add(input['num1'], input['num2']);
-  } else if (input['operation'].includes('subtract') || input['operation'].includes('-')) {
-    result = subtract(input['num1'], input['num2']);
-  } else if (input['operation'].includes('multiply') || input['operation'].includes('*')) {
-      result = multiply(input['num1'], input['num2']);
-  } else if (input['operation'].includes('divide') || input['operation'].includes('/')) {
-    if (input['num2'] === 0) {
-      console.log('Cannot divide by zero.');
-      return;
-    } else {
-      result = divide(input['num1'], input['num2']);
-    }
+// helper method to validate input
+const isNumValid = function(input) {
+  if (typeof(input) !== 'number') {
+    return false;
   } else {
-    console.log('Sorry, operator invalid.');
+    return true;
   }
-
-  return `Your result: ${result}`
 }
+
+
+// main calculator logic
+const calculate = function(input) {
+  // validate input nums
+  if (!isNumValid(input.num1) || !isNumValid(input.num2)) {
+    console.log("Oops! Input must be a number.");
+    return;
+  } else {
+    // only word and symbol allowed for each operation
+    if (input['operation'].includes('add') || input['operation'].includes('+')) {
+      result = add(input['num1'], input['num2']);
+    } else if (input['operation'].includes('subtract') || input['operation'].includes('-')) {
+      result = subtract(input['num1'], input['num2']);
+    } else if (input['operation'].includes('multiply') || input['operation'].includes('*')) {
+        result = multiply(input['num1'], input['num2']);
+    } else if (input['operation'].includes('divide') || input['operation'].includes('/')) {
+      if (input['num2'] === 0) {
+        console.log('Oops! Cannot divide by zero.');
+        return;
+      } else {
+        result = divide(input['num1'], input['num2']);
+      }
+    } else {
+      console.log('Oops! The operator must be a valid operation word or symbol.');
+      return;
+    }
+
+    return `Your result: ${result}`
+  }
+}
+
 
 //   switch (suppliedOperation) {
 //     case 'add':
