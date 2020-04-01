@@ -1,4 +1,4 @@
-// define constants to simulate user input
+// define four example constants to simulate user input
 const exampleAdditionInput = {
   num1: 8,
   num2: 8.2,
@@ -29,12 +29,10 @@ const subtract = (num1, num2) => num1 - num2;
 const multiply = (num1, num2) => num1 * num2;
 const divide = (num1, num2) => num1 / num2;
 
-
-// helper method to validate input
+// helper method to validate input numbers
 const isNumValid = function(input) {
   return (typeof(input) === 'number' ? true : false);
 }
-
 
 // main calculator logic
 const calculate = function(input) {
@@ -64,7 +62,7 @@ const calculate = function(input) {
   }
 }
 
-
+// for testing purposes:
 console.log(calculate(exampleAdditionInput));
 console.log(calculate(exampleSubtractionInput));
 console.log(calculate(exampleMultiplicationInput));
